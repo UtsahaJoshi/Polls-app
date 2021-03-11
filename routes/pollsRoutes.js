@@ -1,10 +1,11 @@
 const express = require("express");
 const pollController = require("./../controllers/pollsControllers");
+const authController = require("./../controllers/authcontroller");
 
 const router = express.Router();
 router
   .route("/")
-  .get(pollController.getAllPolls)
+  .get(authController.protect, pollController.getAllPolls)
   .post(pollController.createPolls);
 router
   .route("/:id")
