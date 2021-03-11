@@ -1,85 +1,52 @@
 const Polls = require("./../models/pollsModel");
+const catchAsync = require("./../utils/catchAsync");
 
-exports.getAllPolls = async (req, res) => {
-  try {
-    const polls = await Polls.find();
-    res.status(200).json({
-      status: "success",
-      results: polls.length,
-      data: {
-        polls,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-exports.createPolls = async (req, res) => {
-  try {
-    const newPoll = await Polls.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        poll: newPoll,
-      },
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-exports.getOnePoll = async (req, res) => {
-  try {
-    const pol = await Polls.findById(req.params.id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        pol,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-exports.updatePoll = async (req, res) => {
-  try {
-    const polls = await Polls.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    res.status(200).json({
-      status: "success",
-      data: {
-        polls,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-exports.deletePolls = async (req, res) => {
-  try {
-    await Polls.findByIdAndDelete(req.params.id);
-    res.status(204).json({
-      status: "success",
-      data: null,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
+exports.getAllPolls = catchAsync(async (req, res, next) => {
+  console.log(req);
+  const polls = await Polls.find();
+  res.status(200).json({
+    status: "success",
+    results: polls.length,
+    data: {
+      polls,
+    },
+  });
+});
+
+exports.createPolls = catchAsync(async (req, res, next) => {
+  const newPoll = await Polls.create(req.body);
+  res.status(201).json({
+    status: "success",
+    data: {
+      poll: newPoll,
+    },
+  });
+});
+exports.getOnePoll = catchAsync(async (req, res, next) => {
+  const pol = await Polls.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: {
+      pol,
+    },
+  });
+});
+exports.updatePoll = catchAsync(async (req, res, next) => {
+  const polls = await Polls.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  res.status(200).json({
+    status: "success",
+    data: {
+      polls,
+    },
+  });
+});
+exports.deletePolls = catchAsync(async (req, res, next) => {
+  await Polls.findByIdAndDelete(req.params.id);
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});

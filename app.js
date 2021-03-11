@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const pollsRouter = require("./routes/pollsRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
@@ -11,4 +12,5 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/v1/polls", pollsRouter);
+app.use("/api/v1/users", userRouter);
 module.exports = app;
