@@ -8,7 +8,6 @@ const userRouter = require("./routes/userRoutes");
 const globalError = require("./controllers/errorController");
 const app = express();
 
-console.log(process.env);
 // 1) MIDDLEWARES
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("tiny"));
@@ -32,3 +31,4 @@ app.all("*", (req, res, next) => {
 });
 app.use(globalError);
 module.exports = app;
+console.log(process.env);
