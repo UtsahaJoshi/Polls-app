@@ -10,6 +10,7 @@ exports.getAllPolls = catchAsync(async (req, res, next) => {
     data: {
       polls,
     },
+    
   });
 });
 

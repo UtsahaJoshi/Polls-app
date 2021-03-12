@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
+    "start:prod":"NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js"
   },
   "keywords": [],
@@ -17,11 +18,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "ndb": "^1.1.5",
+    "socket.io": "^4.0.0",
     "validator": "^13.5.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
-
   },
   "engines": {
     "node": ">=10.0.0"

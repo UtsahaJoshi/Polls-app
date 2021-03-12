@@ -12,6 +12,12 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 //main app.js file
 const app = require("./app");
+const http = require("http").Server(app);
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+  },
+});
 
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
@@ -27,8 +33,10 @@ mongoose
   })
   .then(() => console.log("db connection successful"));
 
+global.io = io;
+
 let port = 3000 || process.env.PORT;
-let server = app.listen(port, () => {
+let server = http.listen(port, () => {
   console.log(`listening to the port ${port}`);
 });
 

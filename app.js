@@ -10,7 +10,7 @@ const app = express();
 
 // 1) MIDDLEWARES
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("tiny"));
+  app.use(morgan("dev"));
 }
 
 app.use(express.json());
@@ -31,4 +31,3 @@ app.all("*", (req, res, next) => {
 });
 app.use(globalError);
 module.exports = app;
-console.log(process.env);
