@@ -15,13 +15,18 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.2",
+    "express-rate-limit": "^5.2.6",
     "googleapis": "^67.1.1",
+    "helmet": "^4.4.1",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "ndb": "^1.1.5",
     "nodemailer": "^6.5.0",
     "socket.io": "^4.0.0",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
